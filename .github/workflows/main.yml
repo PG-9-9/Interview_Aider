@@ -22,5 +22,5 @@ jobs:
       - name: Lint code
         run: echo "Linting repository"
 
-      - name: Run unit tests
-        run: echo "Running unit tests"
+      - name: Setup environment variables
+        run: echo "OPENAI_API_KEY= ${{ secrets.OPEN_AI_API_KEY }} " >> $GITHUB_ENV
