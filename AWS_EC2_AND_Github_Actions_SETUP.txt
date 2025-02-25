@@ -10,3 +10,5 @@ newgrp docker
 
 $ Then goto github actions to setup the runners
 Make sure to configure as self-hosted
+
+# Make sure the port 8080 is custom inbounded in amazon EC2
