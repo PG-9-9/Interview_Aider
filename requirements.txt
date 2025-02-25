@@ -12,5 +12,6 @@ python-multipart
 jinja2
 PyPDF2
 faiss-cpu
+pandas
 
 -e .
