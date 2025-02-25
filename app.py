@@ -9,6 +9,7 @@ import aiofiles
 import json
 import csv
 from src.helper import llm_pipeline
+from uvicorn import run as app_run
 
 
 app = FastAPI()
@@ -36,7 +37,6 @@ async def chat(request: Request, pdf_file: bytes = File(), filename: str = Form(
     res = Response(response_data)
     return res
 
-
 def get_csv(file_path):
     answer_generation_chain, ques_list = llm_pipeline(file_path)
     base_folder = 'static/output/'
@@ -57,9 +57,6 @@ def get_csv(file_path):
             csv_writer.writerow([question, answer])
     return output_file
 
-
-
-
 @app.post("/analyze")
 async def chat(request: Request, pdf_filename: str = Form(...)):
     output_file = get_csv(pdf_filename)
@@ -67,7 +64,5 @@ async def chat(request: Request, pdf_filename: str = Form(...)):
     res = Response(response_data)
     return res
 
-
-
 if __name__ == "__main__":
-    uvicorn.run("app:app", host='0.0.0.0', port=5000, reload=True)
+    app_run(app, host="0.0.0.0", port=8000) # localhost:8000, on the local machine.
